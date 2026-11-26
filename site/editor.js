@@ -35,16 +35,35 @@ const load = (url) =>
     if (!response.ok) throw new Error(`${url}: ${response.status}`);
     return response.json();
   });
-const [content, themeData, snapshot, stack, months] = await Promise.all([
+const [content, themeData, rawSnapshot, stack, months] = await Promise.all([
   load("content.json"),
   load("/themes.json").catch(() => load("themes.json")).catch(() => ({ themes: [] })),
-  load("/github-snapshot.json").catch(() => load("github-snapshot.json")).catch(() => ({ contributions: { days: [] } })),
+  load("/github-snapshot.json").catch(() => load("github-snapshot.json")).catch(() => ({})),
   load("stack.json").catch(() => null),
   load("months.json").catch(() => null),
 ]);
+const snapshot = {
+  followers: rawSnapshot?.followers ?? 0,
+  stars: typeof rawSnapshot?.stars === "object" && rawSnapshot?.stars !== null
+    ? rawSnapshot.stars
+    : {
+        total: rawSnapshot?.stars ?? 0,
+        own: rawSnapshot?.stars ?? 0,
+        marketplace: 0,
+        repositoryCount: rawSnapshot?.publicRepos ?? rawSnapshot?.repos ?? 48,
+      },
+  contributions: typeof rawSnapshot?.contributions === "object" && rawSnapshot?.contributions !== null
+    ? rawSnapshot.contributions
+    : {
+        total: rawSnapshot?.totalContributions ?? 633,
+        from: rawSnapshot?.from ?? "2025-11-23",
+        to: rawSnapshot?.to ?? "2026-11-26",
+        days: rawSnapshot?.days ?? [],
+      },
+};
 const themes = themeData?.themes || [];
 const palettes = new Map((content.palettes || []).map((theme) => [key(theme.name), theme]));
-const days = snapshot?.contributions?.days || [];
+const days = snapshot.contributions.days || rawSnapshot?.days || [];
 
 const fileLabel = (image, index) => {
   const base = image.source.split("/").pop().split("?")[0];
