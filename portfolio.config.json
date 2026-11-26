@@ -118,7 +118,9 @@
       "long": "Validated knowledge of modern cybersecurity landscapes, defense mechanisms, encryption, and secure network protocols by Cisco Networking Academy.",
       "githubRepo": "",
       "more": true,
-      "shots": [],
+      "shots": [
+        "shots/cert-cybersecurity.png"
+      ],
       "stack": [
         "Security",
         "Networking",
@@ -134,7 +136,9 @@
       "long": "Certified mastery of Python programming fundamentals, procedural logic, algorithmic problem-solving, and object-oriented paradigms from Cisco Networking Academy.",
       "githubRepo": "",
       "more": true,
-      "shots": [],
+      "shots": [
+        "shots/cert-python.png"
+      ],
       "stack": [
         "Python",
         "Algorithms",
@@ -150,7 +154,9 @@
       "long": "Cisco certified training in low-level hardware architecture, operating system configuration, troubleshooting, and enterprise IT support.",
       "githubRepo": "",
       "more": true,
-      "shots": [],
+      "shots": [
+        "shots/cert-hardware.png"
+      ],
       "stack": [
         "Hardware",
         "OS",

@@ -1,6 +1,6 @@
 {
  "owner": "Rida1019-taki",
- "fetchedAt": "2026-11-26T13:40:23.663Z",
+ "fetchedAt": "2026-11-26T16:16:10.493Z",
  "about": {
   "repo": "Rida1019-taki",
   "lines": [
@@ -193,10 +193,18 @@
     "Cryptography",
     "Cisco"
    ],
-   "images": [],
+   "images": [
+    {
+     "file": "shots/cert-cybersecurity.png",
+     "source": "shots/cert-cybersecurity.png",
+     "alt": "Cisco Cybersecurity screenshot 1",
+     "xray": true
+    }
+   ],
    "lines": [
     "# Cisco Cybersecurity",
     "",
+    "\u0001IMG0\u0001",
     "",
     "### Industry-recognized certification covering network security principles, threat mitigation, data integrity, and defense-in-depth.",
     "",
@@ -232,10 +240,18 @@
     "OOP",
     "Cisco"
    ],
-   "images": [],
+   "images": [
+    {
+     "file": "shots/cert-python.png",
+     "source": "shots/cert-python.png",
+     "alt": "Python Essentials screenshot 1",
+     "xray": true
+    }
+   ],
    "lines": [
     "# Python Essentials",
     "",
+    "\u0001IMG0\u0001",
     "",
     "### Foundational and object-oriented programming in Python, data structures, algorithms, and modular design.",
     "",
@@ -272,10 +288,18 @@
     "Architecture",
     "Cisco"
    ],
-   "images": [],
+   "images": [
+    {
+     "file": "shots/cert-hardware.png",
+     "source": "shots/cert-hardware.png",
+     "alt": "IT Hardware & Systems screenshot 1",
+     "xray": true
+    }
+   ],
    "lines": [
     "# IT Hardware & Systems",
     "",
+    "\u0001IMG0\u0001",
     "",
     "### Computer hardware architecture, OS internals, diagnostics, and foundational computing infrastructure.",
     "",
