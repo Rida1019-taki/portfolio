@@ -1,0 +1,174 @@
+{
+ "from": "2026-01-01",
+ "to": "2026-11-24",
+ "fetchedAt": "2026-11-25T09:11:39.159Z",
+ "scope": "Sample monthly commits",
+ "months": [
+  {
+   "month": "2026-01",
+   "top": [
+    {
+     "repo": "HealthCare-Syst-me-de-Gestion_M-dicale",
+     "owner": "Rida1019-taki",
+     "commits": 8
+    },
+    {
+     "repo": "LogiTrack",
+     "owner": "Rida1019-taki",
+     "commits": 4
+    }
+   ]
+  },
+  {
+   "month": "2026-02",
+   "top": [
+    {
+     "repo": "LogiTrack",
+     "owner": "Rida1019-taki",
+     "commits": 11
+    },
+    {
+     "repo": "FleetFlow",
+     "owner": "Rida1019-taki",
+     "commits": 6
+    }
+   ]
+  },
+  {
+   "month": "2026-03",
+   "top": [
+    {
+     "repo": "FleetFlow",
+     "owner": "Rida1019-taki",
+     "commits": 14
+    },
+    {
+     "repo": "ebank-core-api",
+     "owner": "Rida1019-taki",
+     "commits": 8
+    }
+   ]
+  },
+  {
+   "month": "2026-04",
+   "top": [
+    {
+     "repo": "ebank-core-api",
+     "owner": "Rida1019-taki",
+     "commits": 17
+    },
+    {
+     "repo": "Bank_Management_System",
+     "owner": "Rida1019-taki",
+     "commits": 10
+    }
+   ]
+  },
+  {
+   "month": "2026-05",
+   "top": [
+    {
+     "repo": "Bank_Management_System",
+     "owner": "Rida1019-taki",
+     "commits": 20
+    },
+    {
+     "repo": "Cinema",
+     "owner": "Rida1019-taki",
+     "commits": 5
+    }
+   ]
+  },
+  {
+   "month": "2026-06",
+   "top": [
+    {
+     "repo": "Cinema",
+     "owner": "Rida1019-taki",
+     "commits": 8
+    },
+    {
+     "repo": "HealthCare-Syst-me-de-Gestion_M-dicale",
+     "owner": "Rida1019-taki",
+     "commits": 7
+    }
+   ]
+  },
+  {
+   "month": "2026-07",
+   "top": [
+    {
+     "repo": "HealthCare-Syst-me-de-Gestion_M-dicale",
+     "owner": "Rida1019-taki",
+     "commits": 11
+    },
+    {
+     "repo": "LogiTrack",
+     "owner": "Rida1019-taki",
+     "commits": 9
+    }
+   ]
+  },
+  {
+   "month": "2026-08",
+   "top": [
+    {
+     "repo": "LogiTrack",
+     "owner": "Rida1019-taki",
+     "commits": 14
+    },
+    {
+     "repo": "FleetFlow",
+     "owner": "Rida1019-taki",
+     "commits": 4
+    }
+   ]
+  },
+  {
+   "month": "2026-09",
+   "top": [
+    {
+     "repo": "FleetFlow",
+     "owner": "Rida1019-taki",
+     "commits": 17
+    },
+    {
+     "repo": "ebank-core-api",
+     "owner": "Rida1019-taki",
+     "commits": 6
+    }
+   ]
+  },
+  {
+   "month": "2026-10",
+   "top": [
+    {
+     "repo": "ebank-core-api",
+     "owner": "Rida1019-taki",
+     "commits": 20
+    },
+    {
+     "repo": "Bank_Management_System",
+     "owner": "Rida1019-taki",
+     "commits": 8
+    }
+   ]
+  },
+  {
+   "month": "2026-11",
+   "top": [
+    {
+     "repo": "Bank_Management_System",
+     "owner": "Rida1019-taki",
+     "commits": 8
+    },
+    {
+     "repo": "Cinema",
+     "owner": "Rida1019-taki",
+     "commits": 10
+    }
+   ]
+  }
+ ],
+ "owner": "Rida1019-taki"
+}
