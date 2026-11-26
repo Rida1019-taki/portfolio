@@ -310,6 +310,11 @@ export function Header() {
 }
 
 export default function Home() {
+  useEffect(() => {
+    if (typeof window !== "undefined" && (window.location.pathname === "/" || window.location.pathname === "")) {
+      window.location.replace("/index.html");
+    }
+  }, []);
   const { t, lang } = useLanguage();
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const tr = (fr: string, en: string) => (lang === "fr" ? fr : en);

@@ -1,0 +1,246 @@
+{
+  "identity": {
+    "name": "Rida Taki",
+    "barTitle": "RIDA TAKI",
+    "terminalUser": "rida",
+    "domain": "ridataki.dev",
+    "tagline": "Spring Boot, Java, React, and Kotlin developer.",
+    "github": "Rida1019-taki",
+    "storagePrefix": "rida"
+  },
+  "about": {
+    "bio": "Full-stack developer specializing in Java, Spring Boot, React, and Kotlin. Focused on clean REST architectures, high-performance database design, and intuitive user experiences.",
+    "extra": "Oued Zem, Morocco · Open to New Opportunities"
+  },
+  "links": [
+    {
+      "label": "Email",
+      "url": "mailto:takirida72@gmail.com"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/Rida1019-taki"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/rida-taki-673b0a294"
+    },
+    {
+      "label": "Resume (PDF)",
+      "url": "/docs/Rida_Taki_CV.pdf"
+    }
+  ],
+  "work": [
+    {
+      "when": "10/2026 – present",
+      "title": "Développeur Informatique (Web & Full Stack)",
+      "org": "Skaii",
+      "where": "Oued Zem, Morocco",
+      "desc": "Developing enterprise web applications and robust backend services using React, Spring Boot, Java, and MySQL. Designing normalized relational schemas and scalable REST endpoints.",
+      "url": "https://github.com/Rida1019-taki"
+    },
+    {
+      "when": "2024 – present",
+      "title": "BTS in Information Systems Development (DSI)",
+      "org": "Lycée Technique",
+      "where": "Oued Zem, Morocco",
+      "desc": "Software engineering fundamentals, algorithmic optimization, distributed systems, database management, and mobile engineering.",
+      "url": "https://github.com/Rida1019-taki"
+    },
+    {
+      "when": "2023 – 2024",
+      "title": "Baccalauréat in Physical Sciences",
+      "org": "Lycée Qualifiant Hassan II",
+      "where": "Oued Zem, Morocco",
+      "desc": "Rigorous mathematics and scientific foundations fostering analytical reasoning and problem-solving skills."
+    }
+  ],
+  "projects": [
+    {
+      "name": "HealthCare System",
+      "tag": "Enterprise · Spring Boot & React",
+      "desc": "Full-stack medical management platform with JWT role-based security, doctor-patient appointment scheduling, and automated Docker containerization.",
+      "long": "HealthCare Management System features an enterprise Spring Boot REST API coupled with a modern React client. Key features include role-based access control (Admin, Doctor, Patient), automated appointment scheduling, medical record history, medical prescription tracking, and production Docker containerization.",
+      "githubRepo": "Rida1019-taki/HealthCare-Syst-me-de-Gestion_M-dicale",
+      "shots": [
+        "shots/healthcare.png"
+      ],
+      "stack": [
+        "Spring Boot",
+        "React",
+        "Docker",
+        "MySQL",
+        "JWT",
+        "REST APIs"
+      ],
+      "url": "https://github.com/Rida1019-taki/HealthCare-Syst-me-de-Gestion_M-dicale"
+    },
+    {
+      "name": "LogiTrack",
+      "tag": "Supply Chain · React & Material UI",
+      "desc": "Supply chain & logistics platform featuring multi-role access control, live order tracking, and server-side pagination.",
+      "long": "LogiTrack is a comprehensive logistics orchestration platform engineered with Spring Boot and a responsive React frontend styled with Material UI. It features real-time inventory and delivery tracking, strict role-based authorization (ADMIN, MANAGER, AGENT), and high-performance server-side pagination.",
+      "githubRepo": "Rida1019-taki/LogiTrack",
+      "shots": [
+        "shots/logitrack.png"
+      ],
+      "stack": [
+        "React",
+        "Material UI",
+        "Spring Boot",
+        "MySQL",
+        "REST API"
+      ],
+      "url": "https://github.com/Rida1019-taki/LogiTrack"
+    },
+    {
+      "name": "FleetFlow",
+      "tag": "Logistics · Spring Boot & DevOps",
+      "desc": "Enterprise vehicle fleet orchestration system built with strict MapStruct DTO architecture and GitHub Actions CI/CD pipelines.",
+      "long": "FleetFlow coordinates commercial delivery fleets, vehicle maintenance lifecycle, and route optimization. Engineered with strict layered architecture using MapStruct DTOs, automated CI/CD workflows via GitHub Actions, and OpenAPI / Swagger 3 documentation.",
+      "githubRepo": "Rida1019-taki/FleetFlow",
+      "shots": [
+        "shots/fleetflow.png"
+      ],
+      "stack": [
+        "Java",
+        "Spring Boot",
+        "Docker",
+        "GitHub Actions",
+        "Swagger"
+      ],
+      "url": "https://github.com/Rida1019-taki/FleetFlow"
+    },
+    {
+      "name": "Cisco Cybersecurity",
+      "tag": "Security · Cisco Academy",
+      "desc": "Industry-recognized certification covering network security principles, threat mitigation, data integrity, and defense-in-depth.",
+      "long": "Validated knowledge of modern cybersecurity landscapes, defense mechanisms, encryption, and secure network protocols by Cisco Networking Academy.",
+      "githubRepo": "",
+      "more": true,
+      "shots": [],
+      "stack": [
+        "Security",
+        "Networking",
+        "Cryptography",
+        "Cisco"
+      ],
+      "url": "/docs/introduction-cybersecurite.pdf"
+    },
+    {
+      "name": "Python Essentials",
+      "tag": "Language · Cisco Academy",
+      "desc": "Foundational and object-oriented programming in Python, data structures, algorithms, and modular design.",
+      "long": "Certified mastery of Python programming fundamentals, procedural logic, algorithmic problem-solving, and object-oriented paradigms from Cisco Networking Academy.",
+      "githubRepo": "",
+      "more": true,
+      "shots": [],
+      "stack": [
+        "Python",
+        "Algorithms",
+        "OOP",
+        "Cisco"
+      ],
+      "url": "/docs/python-essentials-1.pdf"
+    },
+    {
+      "name": "IT Hardware & Systems",
+      "tag": "Hardware · Cisco Academy",
+      "desc": "Computer hardware architecture, OS internals, diagnostics, and foundational computing infrastructure.",
+      "long": "Cisco certified training in low-level hardware architecture, operating system configuration, troubleshooting, and enterprise IT support.",
+      "githubRepo": "",
+      "more": true,
+      "shots": [],
+      "stack": [
+        "Hardware",
+        "OS",
+        "Architecture",
+        "Cisco"
+      ],
+      "url": "/docs/bases-materiel-informatique.pdf"
+    }
+  ],
+  "talks": [
+    {
+      "name": "FootTech National Hackathon 2026",
+      "place": "Oued Zem, Morocco",
+      "when": "2026",
+      "lat": 32.86,
+      "lon": -6.57,
+      "desc": "National sports & technology hackathon finalist. Led technical architecture delivering a full-stack MVP combining Spring Boot, React, and Flutter under intense sprint conditions.",
+      "url": "https://github.com/Rida1019-taki",
+      "photos": [
+        "photos/foottech/foottech-1.jpg",
+        "photos/foottech/foottech-2.jpg",
+        "photos/foottech/foottech-3.jpg",
+        "photos/foottech/foottech.jpg"
+      ]
+    },
+    {
+      "name": "Hacktoberfest Hack Day Oued Zem 2026",
+      "place": "FPBM, Morocco",
+      "when": "Oct 2026",
+      "lat": 32.33,
+      "lon": -6.35,
+      "desc": "In-person open-source hack day in collaboration with MLH & DigitalOcean. Developed enterprise Java & Spring Boot solutions and engaged with robotics/AI teams.",
+      "url": "https://github.com/Rida1019-taki",
+      "photos": [
+        "photos/hacktoberfest/hacktoberfest-1.jpg",
+        "photos/hacktoberfest/hacktoberfest-2.jpg",
+        "photos/hacktoberfest/hacktoberfest-3.jpg",
+        "photos/hacktoberfest/hacktoberfest-cert.png"
+      ]
+    },
+    {
+      "name": "Hackathon Rally AI & Innovation",
+      "place": "Morocco",
+      "when": "2026",
+      "lat": 33.57,
+      "lon": -7.58,
+      "desc": "Intensive algorithmic & AI sprint building automated data processing pipelines and predictive REST endpoints.",
+      "url": "https://github.com/Rida1019-taki",
+      "photos": [
+        "photos/rally-ai/rally-ai1.jpeg"
+      ]
+    }
+  ],
+  "wallRepos": [
+    "HealthCare-Syst-me-de-Gestion_M-dicale",
+    "LogiTrack",
+    "FleetFlow"
+  ],
+  "siteStack": [
+    {
+      "name": "Spring Boot",
+      "via": "enterprise backend & microservices"
+    },
+    {
+      "name": "React",
+      "via": "interactive UI & client dashboard"
+    },
+    {
+      "name": "Java",
+      "via": "core language & OOP architecture"
+    },
+    {
+      "name": "Kotlin",
+      "via": "native Android development"
+    },
+    {
+      "name": "MySQL",
+      "via": "relational database & queries"
+    },
+    {
+      "name": "Docker",
+      "via": "containerization & deployment"
+    },
+    {
+      "name": "Flutter",
+      "via": "cross-platform mobile apps"
+    },
+    {
+      "name": "Git & CI/CD",
+      "via": "version control & GitHub Actions"
+    }
+  ]
+}
