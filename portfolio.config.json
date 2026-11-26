@@ -175,6 +175,7 @@
       "lon": -6.57,
       "desc": "National sports & technology hackathon finalist. Led technical architecture delivering a full-stack MVP combining Spring Boot, React, and Flutter under intense sprint conditions.",
       "url": "https://github.com/Rida1019-taki",
+      "photo": "photos/foottech/foottech-1.jpg",
       "photos": [
         "photos/foottech/foottech-1.jpg",
         "photos/foottech/foottech-2.jpg",
@@ -190,6 +191,7 @@
       "lon": -6.35,
       "desc": "In-person open-source hack day in collaboration with MLH & DigitalOcean. Developed enterprise Java & Spring Boot solutions and engaged with robotics/AI teams.",
       "url": "https://github.com/Rida1019-taki",
+      "photo": "photos/hacktoberfest/hacktoberfest-1.jpg",
       "photos": [
         "photos/hacktoberfest/hacktoberfest-1.jpg",
         "photos/hacktoberfest/hacktoberfest-2.jpg",
@@ -205,6 +207,7 @@
       "lon": -7.58,
       "desc": "Intensive algorithmic & AI sprint building automated data processing pipelines and predictive REST endpoints.",
       "url": "https://github.com/Rida1019-taki",
+      "photo": "photos/rally-ai/rally-ai1.jpeg",
       "photos": [
         "photos/rally-ai/rally-ai1.jpeg"
       ]

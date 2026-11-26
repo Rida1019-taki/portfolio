@@ -483,10 +483,19 @@ function talksSpec() {
       {
         cmd: "ls photos/",
         mount(host) {
-          const cards = list.map((talk) => ({ repo: talk.name, slug: talk.name, name: talk.name, description: talk.place, included: false, palette: [], note: talk.when }));
+          const cards = list.map((talk) => ({
+            repo: talk.name,
+            slug: talk.name,
+            name: talk.name,
+            description: talk.place,
+            included: false,
+            palette: [],
+            note: talk.when,
+            image: talk.photo || (talk.photos && talk.photos[0]) || "",
+          }));
           const archive = createArchive(host, cards, {
             stats: {},
-            thumbs: Object.fromEntries(list.map((talk) => [talk.name, talk.photo])),
+            thumbs: Object.fromEntries(list.map((talk) => [talk.name, talk.photo || (talk.photos && talk.photos[0]) || ""])),
             current: "",
             viewport: buffer,
             lightbox,

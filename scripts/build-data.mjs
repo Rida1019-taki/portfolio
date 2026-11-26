@@ -346,7 +346,10 @@ write("site/content.json", {
   themeStats: {},
   themeThumbs,
   work: CONFIG.work || [],
-  talks: CONFIG.talks || [],
+  talks: (CONFIG.talks || []).map((t) => ({
+    ...t,
+    photo: t.photo || (t.photos && t.photos[0]) || "",
+  })),
   links: CONFIG.links || [],
   more: MORE,
 });
