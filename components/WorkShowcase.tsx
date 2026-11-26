@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Tilt from "react-parallax-tilt";
-import Image from "next/image";
 import {
   ArrowUpRight,
   Sparkles,
@@ -14,10 +14,13 @@ import {
   Code2,
   Layout,
   Gauge,
+  ScanLine,
+  X,
 } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import { playClick, playPop } from "@/lib/sound";
 import { useLanguage } from "@/components/LanguageProvider";
+import ProjectXrayImage from "./ProjectXrayImage";
 
 export interface ProjectItem {
   id: string;
@@ -57,6 +60,34 @@ export default function WorkShowcase({ projects, t }: WorkShowcaseProps) {
     logitrack: "preview",
     fleetflow: "preview",
   });
+  const [xrayMap, setXrayMap] = useState<Record<string, boolean>>({});
+  const [lightboxProject, setLightboxProject] = useState<ProjectItem | null>(null);
+  const [lightboxXray, setLightboxXray] = useState(false);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (lightboxProject) setLightboxProject(null);
+        else setXrayMap({});
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightboxProject]);
+
+  useEffect(() => {
+    if (!lightboxProject) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [lightboxProject]);
+
+  const toggleXray = (projectId: string) => {
+    playPop();
+    setXrayMap((prev) => ({ ...prev, [projectId]: !prev[projectId] }));
+  };
 
   const filteredProjects =
     activeFilter === "all"
@@ -266,34 +297,52 @@ export default function WorkShowcase({ projects, t }: WorkShowcaseProps) {
 
                         {/* Visual Safari Browser Mockup Column */}
                         <div className={isHero ? "lg:col-span-7" : "pt-2"}>
-                          <div className="relative rounded-2xl border border-white/15 bg-neutral-950 p-2 sm:p-2.5 shadow-2xl transition-all duration-500 group-hover:border-white/30">
+                          <div className="keep-dark relative rounded-2xl border border-white/15 bg-neutral-950 p-2 sm:p-2.5 shadow-2xl transition-all duration-500 group-hover:border-white/30">
                             {/* Window Chrome Header */}
-                            <div className="flex items-center justify-between px-3 py-1.5 border-b border-white/10 mb-2">
-                              <div className="flex items-center gap-1.5">
+                            <div className="flex items-center justify-between px-3 py-1.5 border-b border-white/10 mb-2 gap-2">
+                              <div className="flex items-center gap-1.5 shrink-0">
                                 <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
                                 <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/80" />
                                 <span className="h-2.5 w-2.5 rounded-full bg-green-500/80" />
                               </div>
-                              <span className="text-[10px] font-mono text-gray-400">
+                              <span className="text-[10px] font-mono text-gray-400 truncate">
                                 {project.name.toLowerCase()}.ridataki.dev
                               </span>
-                              <span className="flex items-center gap-1 text-[10px] font-mono text-emerald-400">
-                                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                                {fr ? "En ligne" : "Online"}
-                              </span>
+                              <div className="flex items-center gap-2 shrink-0">
+                                <button
+                                  type="button"
+                                  onClick={() => toggleXray(project.id)}
+                                  title={fr ? "Inspecter les contours wireframe (Sobel X-Ray)" : "Inspect wireframe edges (Sobel X-Ray)"}
+                                  aria-pressed={Boolean(xrayMap[project.id])}
+                                  className={`inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-[10px] font-mono transition-all cursor-pointer ${
+                                    xrayMap[project.id]
+                                      ? "border-[#D9A441] bg-[#D9A441]/20 text-[#D9A441] font-bold shadow-[0_0_12px_rgba(217,164,65,0.35)]"
+                                      : "border-white/10 bg-white/5 text-gray-400 hover:border-white/30 hover:text-white"
+                                  }`}
+                                >
+                                  <ScanLine size={10} />
+                                  <span>X-Ray</span>
+                                </button>
+                                <span className="hidden sm:flex items-center gap-1 text-[10px] font-mono text-emerald-400">
+                                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                                  {fr ? "En ligne" : "Online"}
+                                </span>
+                              </div>
                             </div>
 
-                            {/* Image Frame */}
-                            <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-neutral-900">
-                              <Image
-                                src={project.image}
-                                alt={fr ? `Aperçu de ${project.name}` : `${project.name} Preview`}
-                                fill
-                                sizes={isHero ? "(max-width: 1024px) 100vw, 750px" : "(max-width: 1024px) 100vw, 550px"}
-                                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                                priority={isHero}
-                              />
-                            </div>
+                            {/* Interactive Sobel X-Ray Image Frame */}
+                            <ProjectXrayImage
+                              src={project.image}
+                              alt={fr ? `Aperçu de ${project.name}` : `${project.name} Preview`}
+                              accent={project.accent}
+                              xrayEnabled={Boolean(xrayMap[project.id])}
+                              onToggleXray={() => toggleXray(project.id)}
+                              onOpenLightbox={() => {
+                                playClick();
+                                setLightboxXray(Boolean(xrayMap[project.id]));
+                                setLightboxProject(project);
+                              }}
+                            />
                           </div>
                         </div>
                       </div>
@@ -441,6 +490,82 @@ export default function WorkShowcase({ projects, t }: WorkShowcaseProps) {
           );
         })}
       </div>
+
+      {/* ═══ 3. FULLSCREEN 4K PROJECT LIGHTBOX (PORTAL TO BODY) ═══ */}
+      {lightboxProject &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div
+            className="keep-dark fixed inset-0 z-[9995] flex items-center justify-center bg-black/90 p-4 sm:p-8 backdrop-blur-2xl animate-in fade-in duration-200"
+            onClick={() => setLightboxProject(null)}
+          >
+            <div
+              className="relative w-full max-w-5xl max-h-[92vh] overflow-y-auto rounded-3xl border border-white/15 bg-neutral-950 p-4 sm:p-6 shadow-[0_30px_100px_rgba(0,0,0,0.9)] space-y-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-3">
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2.5">
+                    <span
+                      className="h-2.5 w-2.5 rounded-full shrink-0"
+                      style={{ backgroundColor: lightboxProject.accent }}
+                    />
+                    <h4 className="text-base sm:text-lg font-bold text-white font-mono truncate">
+                      {lightboxProject.name} — {lightboxProject.subtitle}
+                    </h4>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      playPop();
+                      setLightboxXray((prev) => !prev);
+                    }}
+                    className={`inline-flex items-center gap-1.5 rounded-xl border px-3 py-1.5 text-xs font-mono transition-all cursor-pointer ${
+                      lightboxXray
+                        ? "border-[#D9A441] bg-[#D9A441]/20 text-[#D9A441] font-bold"
+                        : "border-white/15 bg-white/5 text-gray-300 hover:border-white/30 hover:text-white"
+                    }`}
+                  >
+                    <ScanLine size={13} />
+                    <span>{lightboxXray ? "X-Ray ON" : "X-Ray"}</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setLightboxProject(null)}
+                    aria-label={fr ? "Fermer l'aperçu" : "Close preview"}
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-gray-300 hover:bg-white/15 hover:text-white cursor-pointer"
+                  >
+                    <X size={16} />
+                  </button>
+                </div>
+              </div>
+
+              <ProjectXrayImage
+                src={lightboxProject.image}
+                alt={`${lightboxProject.name} Lightbox Preview`}
+                accent={lightboxProject.accent}
+                xrayEnabled={lightboxXray}
+              />
+
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-1 text-xs font-mono text-gray-400">
+                <span>
+                  {lightboxXray
+                    ? fr
+                      ? "Glissez le curseur sur l'image pour inspecter les bords Sobel."
+                      : "Drag across the image to inspect Sobel wireframe edges."
+                    : fr
+                    ? "Appuyez sur Esc pour fermer."
+                    : "Press Esc to close."}
+                </span>
+                <span className="text-emerald-400">{lightboxProject.domain}</span>
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
     </div>
   );
 }

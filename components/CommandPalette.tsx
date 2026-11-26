@@ -22,17 +22,20 @@ import {
   Clock,
   Bug,
   Calendar,
+  Palette,
 } from "lucide-react";
 import { FaGithub, FaLinkedin, FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { triggerGoldConfetti, triggerSideCannons } from "@/lib/confetti";
 import { playPop, playClick } from "@/lib/sound";
 import { toast } from "sonner";
 import { useLanguage } from "./LanguageProvider";
+import { PORTFOLIO_THEMES, ThemeId, useTheme } from "./ThemeProvider";
 import { LAB_SELECT_EVENT, LAB_TABS } from "./EngineeringLab";
 
 export default function CommandPalette() {
   const [open, setOpen] = useState(false);
   const { lang, toggleLang } = useLanguage();
+  const { theme, setTheme } = useTheme();
 
   // Keyboard shortcut listener (Cmd+K / Ctrl+K)
   useEffect(() => {
@@ -111,7 +114,7 @@ export default function CommandPalette() {
           playPop();
           setOpen(true);
         }}
-        className="fixed bottom-6 right-4 sm:right-6 z-40 flex items-center gap-2 sm:gap-2.5 rounded-full border border-white/15 bg-black/80 px-3.5 sm:px-4 py-2 sm:py-2.5 text-xs font-mono font-medium text-white shadow-2xl backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:border-[#D9A441] hover:shadow-[0_0_25px_rgba(217,164,65,0.35)] group cursor-pointer"
+        className="keep-dark fixed bottom-6 right-4 sm:right-6 z-40 flex items-center gap-2 sm:gap-2.5 rounded-full border border-white/15 bg-black/80 px-3.5 sm:px-4 py-2 sm:py-2.5 text-xs font-mono font-medium text-white shadow-2xl backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:border-[#D9A441] hover:shadow-[0_0_25px_rgba(217,164,65,0.35)] group cursor-pointer"
         aria-label={
           lang === "fr"
             ? "Ouvrir le menu de commande (Cmd+K)"
@@ -138,7 +141,7 @@ export default function CommandPalette() {
         >
           {/* Modal Container */}
           <div
-            className="relative w-full max-w-xl max-h-[85vh] overflow-hidden rounded-2xl border border-white/15 bg-neutral-950/95 shadow-2xl shadow-black/80 ring-1 ring-white/10 backdrop-blur-2xl animate-in zoom-in-95 duration-200 flex flex-col"
+            className="keep-dark relative w-full max-w-xl max-h-[85vh] overflow-hidden rounded-2xl border border-white/15 bg-neutral-950/95 shadow-2xl shadow-black/80 ring-1 ring-white/10 backdrop-blur-2xl animate-in zoom-in-95 duration-200 flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Top Gold Gradient Bar */}
@@ -450,6 +453,45 @@ export default function CommandPalette() {
                     </div>
                     <span className="text-[10px] font-mono text-[#D9A441]">Party 🎉</span>
                   </Command.Item>
+                </Command.Group>
+
+                {/* Group: Thèmes (:colorscheme) */}
+                <Command.Group
+                  heading={lang === "fr" ? "Thèmes (:colorscheme) — Vidéo Préservée" : "Themes (:colorscheme) — Video Preserved"}
+                  className="px-2 py-1.5 text-[10px] font-mono uppercase tracking-wider text-gray-400 font-semibold mt-2 border-t border-white/5 pt-3"
+                >
+                  {PORTFOLIO_THEMES.map((item) => (
+                    <Command.Item
+                      key={item.id}
+                      value={`theme colorscheme palette ${item.id} ${item.name} ${item.description}`}
+                      onSelect={() => {
+                        playClick();
+                        setTheme(item.id as ThemeId);
+                        toast.success(lang === "fr" ? `Thème : ${item.name}` : `Theme: ${item.name}`);
+                        setOpen(false);
+                      }}
+                      className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2 text-xs text-gray-300 transition-colors data-[selected=true]:bg-white/10 data-[selected=true]:text-white hover:bg-white/10 hover:text-white"
+                    >
+                      <div className="flex items-center gap-3">
+                        <Palette size={14} style={{ color: item.accent }} />
+                        <span>{item.name}</span>
+                        {theme === item.id && (
+                          <span className="rounded bg-emerald-500/20 px-1.5 py-0.5 text-[9px] font-mono text-emerald-400">
+                            {lang === "fr" ? "Actif" : "Active"}
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        {item.palette.map((c, idx) => (
+                          <span
+                            key={idx}
+                            className="h-2.5 w-2.5 rounded-full border border-white/20"
+                            style={{ backgroundColor: c }}
+                          />
+                        ))}
+                      </div>
+                    </Command.Item>
+                  ))}
                 </Command.Group>
 
                 {/* Group: Réseaux Sociaux */}

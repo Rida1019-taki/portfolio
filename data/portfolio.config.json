@@ -1,0 +1,26 @@
+{
+  "identity": {
+    "name": "Rida Taki",
+    "handle": "rida_taki",
+    "domain": "ridataki.dev",
+    "role": "Full Stack & Mobile Developer",
+    "location": "Oued Zem, Maroc",
+    "timezone": "UTC+1",
+    "email": "takirida72@gmail.com",
+    "github": "Rida1019-taki",
+    "linkedin": "https://www.linkedin.com/in/rida-taki-bb44a8350"
+  },
+  "featuredRepos": [
+    "healthcare-web",
+    "logitrack-api",
+    "logitrack-frontend",
+    "ebank-core-api"
+  ],
+  "themes": [
+    { "id": "obsidian", "name": "Gold Obsidian", "accent": "#D9A441", "mode": "dark" },
+    { "id": "circuit", "name": "Circuit Emerald", "accent": "#3DDC84", "mode": "dark" },
+    { "id": "sora", "name": "Cyber Sora", "accent": "#4CC9F0", "mode": "dark" },
+    { "id": "amber", "name": "Amber Terminal", "accent": "#F7931A", "mode": "dark" },
+    { "id": "paper", "name": "Paper Studio", "accent": "#B4532A", "mode": "light" }
+  ]
+}

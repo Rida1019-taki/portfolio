@@ -419,7 +419,7 @@ export default function SystemArchitecture() {
         </div>
 
         {/* Right Column: Production Code Snippet */}
-        <div className="lg:col-span-6 rounded-2xl border border-white/15 bg-black/90 p-3 sm:p-5 space-y-3 font-mono shadow-2xl min-w-0 w-full overflow-hidden">
+        <div className="keep-dark lg:col-span-6 rounded-2xl border border-white/15 bg-black/90 p-3 sm:p-5 space-y-3 font-mono shadow-2xl min-w-0 w-full overflow-hidden">
           <div className="flex items-center justify-between border-b border-white/10 pb-3">
             <div className="flex items-center gap-2">
               <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />

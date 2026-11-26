@@ -32,7 +32,7 @@ export default function AnimatedNumber({ value, suffix = "", duration = 1500 }: 
                     observer.unobserve(el);
                 }
             },
-            { threshold: 0.3 }
+            { threshold: 0.05 }
         );
 
         observer.observe(el);

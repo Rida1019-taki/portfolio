@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { LanguageProvider } from "@/components/LanguageProvider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://www.ridataki.dev"),
@@ -69,7 +70,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className="h-full antialiased">
+        <html lang="en" className="h-full antialiased" suppressHydrationWarning>
         <head>
             <link rel="icon" href="/favicon.ico" sizes="any" />
             <link rel="icon" href="/icon.png" type="image/png" />
@@ -82,11 +83,13 @@ export default function RootLayout({
             />
         </head>
         <body className="min-h-full flex flex-col">
+        <ThemeProvider>
         <LanguageProvider>
             {children}
             <Toaster position="top-right" richColors closeButton duration={4000} />
             <GoogleAnalytics gaId="G-DS2HD5NH07" />
         </LanguageProvider>
+        </ThemeProvider>
         </body>
         </html>
     );

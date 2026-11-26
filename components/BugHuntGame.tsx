@@ -141,7 +141,7 @@ export default function BugHuntGame() {
 
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-5">
-        <div className="space-y-1 min-w-[500px]">
+        <div className="space-y-1 min-w-0">
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-3.5 py-1 text-xs font-mono font-semibold text-amber-400">
               <Bug size={13} />
@@ -196,7 +196,7 @@ export default function BugHuntGame() {
       )}
 
       {/* Interactive Code Editor Box */}
-      <div className="rounded-2xl border border-white/15 bg-neutral-950 p-3 sm:p-5 font-mono text-xs overflow-x-auto shadow-inner min-w-0">
+      <div className="keep-dark rounded-2xl border border-white/15 bg-neutral-950 p-3 sm:p-5 font-mono text-xs overflow-x-auto shadow-inner min-w-0">
         <div className="space-y-1 min-w-[500px]">
           {codeLines.map((line) => {
             const isSelected = selectedLine === line.lineNum;

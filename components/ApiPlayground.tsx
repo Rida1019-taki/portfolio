@@ -231,7 +231,7 @@ export default function ApiPlayground() {
       </div>
 
       {/* URL Request Bar */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2 rounded-2xl border border-white/15 bg-neutral-950 p-2 shadow-inner min-w-0">
+      <div className="keep-dark flex flex-col md:flex-row items-stretch md:items-center gap-2 rounded-2xl border border-white/15 bg-neutral-950 p-2 shadow-inner min-w-0">
         <div className="flex items-center gap-2 flex-1 px-3 py-1 font-mono text-xs sm:text-sm overflow-x-auto min-w-0">
           <span
             className={`font-bold px-2 py-1 rounded text-xs ${
@@ -267,7 +267,7 @@ export default function ApiPlayground() {
       </div>
 
       {/* Response Panel */}
-      <div className="rounded-2xl border border-white/10 bg-neutral-950 overflow-hidden">
+      <div className="keep-dark rounded-2xl border border-white/10 bg-neutral-950 overflow-hidden">
         {/* Response Tabs & Meta Bar */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-white/10 px-4 py-2.5 bg-white/[0.02]">
           <div className="flex items-center gap-2">

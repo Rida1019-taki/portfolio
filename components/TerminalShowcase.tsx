@@ -6,6 +6,7 @@ import { playTerminalKey, playSuccess, playClick } from "@/lib/sound";
 import { triggerGoldConfetti } from "@/lib/confetti";
 import { toast } from "sonner";
 import { useLanguage } from "@/components/LanguageProvider";
+import { PORTFOLIO_THEMES, ThemeId, useTheme } from "./ThemeProvider";
 
 interface CommandOutput {
   id: number;
@@ -21,6 +22,7 @@ const COMMAND_LIST = [
   "experience",
   "certifications",
   "cv",
+  "theme",
   "contact",
   "sudo hire",
   "date",
@@ -29,6 +31,7 @@ const COMMAND_LIST = [
 
 export default function TerminalShowcase() {
   const { lang } = useLanguage();
+  const { theme, setTheme } = useTheme();
   const fr = lang === "fr";
   const [history, setHistory] = useState<CommandOutput[]>([]);
   const [inputVal, setInputVal] = useState("");
@@ -95,6 +98,60 @@ export default function TerminalShowcase() {
 
     let out: React.ReactNode = null;
 
+    if (raw === "theme" || raw === "themes" || raw.startsWith("theme ") || raw.startsWith("colorscheme")) {
+      const arg = raw.split(/\s+/)[1];
+      if (!arg) {
+        out = (
+          <div className="space-y-1.5 text-xs font-mono text-gray-300">
+            <div className="text-[#D9A441] font-bold">
+              {fr ? `Thèmes disponibles (actif : ${theme}) :` : `Available themes (active: ${theme}):`}
+            </div>
+            <div className="flex flex-wrap gap-2 pt-1">
+              {PORTFOLIO_THEMES.map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => {
+                    playClick();
+                    setTheme(t.id as ThemeId);
+                    toast.success(fr ? `Thème : ${t.name}` : `Theme: ${t.name}`);
+                  }}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/5 px-2.5 py-1 hover:border-[#D9A441] cursor-pointer"
+                >
+                  <span className="h-2 w-2 rounded-full" style={{ backgroundColor: t.accent }} />
+                  <span>{t.id}</span>
+                </button>
+              ))}
+            </div>
+            <div className="text-[11px] text-gray-500">Usage : theme &lt;obsidian|circuit|sora|amber|paper&gt;</div>
+          </div>
+        );
+      } else {
+        const match = PORTFOLIO_THEMES.find(
+          (t) => t.id === arg || t.id.startsWith(arg) || t.name.toLowerCase().startsWith(arg)
+        );
+        if (match) {
+          setTheme(match.id as ThemeId);
+          playSuccess();
+          out = (
+            <div className="text-xs font-mono text-emerald-400">
+              🎨 {fr ? "Thème basculé vers" : "Switched theme to"}{" "}
+              <span className="font-bold text-white">{match.name}</span>{" "}
+              {fr ? "(vidéo ambiante conservée)." : "(background video preserved)."}
+            </div>
+          );
+        } else {
+          out = (
+            <div className="text-xs font-mono text-red-400">
+              {fr ? `Thème introuvable : "${arg}".` : `Theme not found: "${arg}".`} Try: obsidian, circuit, sora, amber, paper.
+            </div>
+          );
+        }
+      }
+      setHistory((prev) => [...prev, { id: Date.now(), command: cmd, output: out }]);
+      return;
+    }
+
     switch (raw) {
       case "help":
         out = (
@@ -106,6 +163,7 @@ export default function TerminalShowcase() {
               <div><span className="text-emerald-400 font-bold">projects</span> — {fr ? "Liste des projets majeurs" : "Key projects"}</div>
               <div><span className="text-emerald-400 font-bold">experience</span> — {fr ? "Parcours pro en entreprise" : "Professional experience"}</div>
               <div><span className="text-emerald-400 font-bold">certifications</span> — {fr ? "Accréditations Cisco" : "Cisco certifications"}</div>
+              <div><span className="text-emerald-400 font-bold">theme</span> — {fr ? "Changer la palette (:colorscheme)" : "Switch palette (:colorscheme)"}</div>
               <div><span className="text-emerald-400 font-bold">cv</span> — {fr ? "Télécharger le CV en PDF" : "Download resume (PDF)"}</div>
               <div><span className="text-emerald-400 font-bold">contact</span> — {fr ? "Email, WhatsApp & Réseaux" : "Email, WhatsApp & Socials"}</div>
               <div><span className="text-emerald-400 font-bold">sudo hire</span> — {fr ? "Proposition d'embauche 🚀" : "Make a job offer 🚀"}</div>
@@ -267,7 +325,7 @@ export default function TerminalShowcase() {
   };
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/90 backdrop-blur-2xl shadow-2xl">
+    <div className="keep-dark relative overflow-hidden rounded-3xl border border-white/10 bg-black/90 backdrop-blur-2xl shadow-2xl">
       {/* Top Window Chrome Bar */}
       <div className="flex items-center justify-between border-b border-white/10 bg-neutral-950/80 px-4 py-3 sm:px-6">
         <div className="flex items-center gap-2">

@@ -74,6 +74,9 @@ import GitHubStats from "@/components/GitHubStats";
 import NowSection from "@/components/NowSection";
 import BookingModal from "@/components/BookingModal";
 import TechMarquee from "@/components/TechMarquee";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
+import VimCommandBar from "@/components/VimCommandBar";
+import CodeWallBackdrop from "@/components/CodeWallBackdrop";
 import { playClick } from "@/lib/sound";
 import emailjs from "@emailjs/browser";
 import { useEffect, useRef, useState } from "react";
@@ -144,12 +147,12 @@ export function Header() {
   return (
       <>
         {/* Dynamic Floating Pill Header */}
-        <header className="fixed top-6 inset-x-0 z-50 px-4 sm:px-8 pointer-events-none">
-          <div className="mx-auto max-w-7xl flex items-center justify-between pointer-events-auto gap-3">
+        <header className="fixed top-6 inset-x-0 z-50 px-4 sm:px-6 pointer-events-none">
+          <div className="mx-auto max-w-[1400px] flex items-center justify-between pointer-events-auto gap-2">
 
             {/* Nav Links Badge */}
             <div
-                className={`hidden lg:flex items-center gap-1 rounded-2xl bg-neutral-950/80 p-2 border backdrop-blur-2xl transition-all duration-500 ${
+                className={`hidden lg:flex items-center gap-0.5 rounded-2xl bg-neutral-950/80 p-1.5 border backdrop-blur-2xl transition-all duration-500 shrink-0 ${
                     scrolled
                         ? "border-[#D9A441]/30 shadow-[0_10px_30px_rgba(0,0,0,0.8)] scale-95"
                         : "border-white/10"
@@ -162,7 +165,7 @@ export function Header() {
                     <a
                         key={item.label}
                         href={item.href}
-                        className={`relative px-4 py-2 text-xs font-mono uppercase tracking-wider transition-all duration-300 rounded-xl ${
+                        className={`relative whitespace-nowrap px-2.5 xl:px-3.5 py-2 text-[11px] font-mono uppercase tracking-wider transition-all duration-300 rounded-xl ${
                             isActive
                                 ? "text-black bg-[#D9A441] font-bold shadow-[0_0_15px_rgba(217,164,65,0.4)]"
                                 : "text-gray-400 hover:text-white hover:bg-white/5"
@@ -175,11 +178,10 @@ export function Header() {
             </div>
 
             {/* Social Icons Badge + Action Buttons */}
-            <div className="flex items-center gap-2 ml-auto">
+            <div className="flex items-center gap-1.5 sm:gap-2 ml-auto shrink-0">
 
               {/* Always Visible Social Icons Badge */}
-              {/* Social Icons Badge */}
-              <div className="hidden sm:flex items-center gap-1.5 rounded-2xl bg-neutral-950/80 p-2 border border-white/10 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+              <div className="hidden xl:flex items-center gap-1 rounded-2xl bg-neutral-950/80 p-1.5 border border-white/10 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
                 {socialLinks.map((social) => (
                     <a
                         key={social.label}
@@ -187,7 +189,7 @@ export function Header() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={social.label}
-                        className="flex h-8 w-8 items-center justify-center rounded-xl text-gray-400 hover:text-black hover:bg-[#D9A441] transition-all duration-300"
+                        className="flex h-7 w-7 items-center justify-center rounded-xl text-gray-400 hover:text-black hover:bg-[#D9A441] transition-all duration-300"
                     >
                       {social.icon}
                     </a>
@@ -197,12 +199,15 @@ export function Header() {
               {/* Language Switcher Pill */}
               <LanguageToggle />
 
+              {/* Theme Switcher Pill (:colorscheme) */}
+              <ThemeSwitcher />
+
               {/* Let's Talk CTA */}
               <a
                   href="#contact"
-                  className="hidden md:flex items-center gap-2 rounded-2xl bg-neutral-950/80 px-4 py-2.5 border border-white/10 text-xs font-mono font-bold text-white hover:text-[#D9A441] hover:border-[#D9A441]/50 backdrop-blur-2xl transition-all duration-300"
+                  className="hidden md:flex whitespace-nowrap items-center gap-1.5 rounded-2xl bg-neutral-950/80 px-3.5 py-2.5 border border-white/10 text-[11px] font-mono font-bold text-white hover:text-[#D9A441] hover:border-[#D9A441]/50 backdrop-blur-2xl transition-all duration-300"
               >
-                <FiCommand size={14} className="text-[#D9A441]" />
+                <FiCommand size={13} className="text-[#D9A441] shrink-0" />
                 <span>{t.nav.letsTalk}</span>
               </a>
 
@@ -612,14 +617,15 @@ export default function Home() {
 
           <div
               className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-                  isPastAbout
-                      ? "bg-black/80 backdrop-blur-md"
-                      : "bg-black/50 backdrop-blur-none"
+                  isPastAbout ? "backdrop-blur-md" : "backdrop-blur-none"
               }`}
+              style={{
+                  background: isPastAbout ? "var(--video-veil-scroll)" : "var(--video-veil-hero)",
+              }}
           />
           {/* Cinematic vignette: keeps the video visible while making hero text readable */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_30%,transparent_0%,rgba(0,0,0,0.35)_55%,rgba(0,0,0,0.85)_100%)]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent" />
+          <div className="video-vignette absolute inset-0 bg-[radial-gradient(ellipse_at_70%_30%,transparent_0%,rgba(0,0,0,0.35)_55%,rgba(0,0,0,0.85)_100%)] transition-opacity duration-700" />
+          <div className="video-vignette absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent transition-opacity duration-700" />
         </div>
 
         <ParticleField />
@@ -627,6 +633,7 @@ export default function Home() {
         <CommandPalette />
         <ScrollProgress />
         <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
+        <VimCommandBar onOpenBooking={() => setIsBookingOpen(true)} />
 
           <main className="relative z-10 pt-20">
             {/* HERO SECTION */}
@@ -730,8 +737,8 @@ export default function Home() {
                             className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                             priority
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                          <div className="absolute bottom-3 inset-x-3 text-left">
+                          <div className="keep-dark absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                          <div className="keep-dark absolute bottom-3 inset-x-3 text-left">
                             <div className="text-base font-extrabold text-white">Rida Taki</div>
                             <div className="text-xs font-mono text-[#D9A441]">Full Stack Developer</div>
                           </div>
@@ -822,7 +829,7 @@ export default function Home() {
                             href="#work"
                             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-2xl px-5 sm:px-6 py-3.5 text-xs font-bold text-black transition-all duration-300 hover:scale-[1.02] shadow-[0_0_20px_rgba(201,160,99,0.3)] text-center"
                             style={{
-                              background: "linear-gradient(135deg, #F3C669, #C9A063)",
+                              background: "linear-gradient(135deg, var(--theme-accent-2), var(--theme-accent))",
                             }}
                           >
                             {t.hero.exploreBtn} <ArrowRight size={15} />
@@ -922,10 +929,13 @@ export default function Home() {
             <div className="section-divider mx-auto max-w-7xl" />
 
             {/* ═══ ENGINEERING LAB (Architecture · API · Terminal · Bug Hunt) ═══ */}
-            <section id="lab" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+            <section id="lab" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32 overflow-hidden">
+              <CodeWallBackdrop />
+              <div className="relative z-10">
               <ScrollReveal>
                 <EngineeringLab />
               </ScrollReveal>
+              </div>
             </section>
 
             <div className="section-divider mx-auto max-w-7xl" />

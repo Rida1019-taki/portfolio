@@ -64,15 +64,47 @@ export default function ExperienceShowcase({ experiences, t }: ExperienceShowcas
   const { lang } = useLanguage();
   const isFr = lang === "fr";
   return (
-    <div className="w-full space-y-8 max-w-5xl mx-auto">
+    <div className="w-full max-w-5xl mx-auto">
+      <div className="relative md:pl-12 space-y-8">
+        {/* ─── SVG GIT LOG --GRAPH / CIRCUIT BUS SPINE ─── */}
+        <div
+          aria-hidden="true"
+          className="hidden md:flex flex-col items-center absolute left-3 top-6 bottom-6 w-6 pointer-events-none"
+        >
+          <div className="h-full w-[2px] bg-gradient-to-b from-[#D9A441] via-[#D9A441]/30 to-transparent rounded-full" />
+        </div>
+
       {experiences.map((exp, i) => {
         const isCurrent = exp.status === "current";
+        const commitHash = isCurrent ? "HEAD -> main" : `commit #0${i + 1}`;
 
         return (
+          <div key={exp.company} className="relative">
+            {/* Branch Node & Orthogonal Circuit Arm */}
+            <div
+              aria-hidden="true"
+              className="hidden md:flex items-center absolute -left-12 top-11 w-12 pointer-events-none"
+            >
+              <div className="ml-[19px] relative flex items-center w-full">
+                <span
+                  className={`h-3 w-3 rounded-sm rotate-45 border-2 shrink-0 ${
+                    isCurrent
+                      ? "bg-[#D9A441] border-black shadow-[0_0_12px_rgba(217,164,65,0.8)]"
+                      : "bg-neutral-900 border-[#D9A441]/60"
+                  }`}
+                />
+                <span className="h-[2px] flex-1 bg-gradient-to-r from-[#D9A441]/70 to-[#D9A441]/10" />
+              </div>
+            </div>
+
           <div
-            key={exp.company}
             className="group relative rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-1 transition-all duration-500 hover:border-[#D9A441]/50 hover:shadow-[0_15px_50px_-15px_rgba(217,164,65,0.25)]"
           >
+            {/* Git Graph Tag Pill */}
+            <div className="keep-dark hidden md:inline-flex items-center gap-1.5 absolute -top-3 left-6 z-10 rounded-full border border-[#D9A441]/35 bg-neutral-950 px-2.5 py-0.5 text-[10px] font-mono text-[#D9A441]">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              <span>{commitHash}</span>
+            </div>
             {/* Ambient Background Aura */}
             <div className="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-[#D9A441]/10 blur-[100px] pointer-events-none group-hover:bg-[#D9A441]/20 transition-all duration-500" />
 
@@ -176,8 +208,10 @@ export default function ExperienceShowcase({ experiences, t }: ExperienceShowcas
 
             </div>
           </div>
+          </div>
         );
       })}
+      </div>
     </div>
   );
 }
